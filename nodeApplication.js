@@ -5,7 +5,8 @@ var stuffINeed = require("./keys.js");
 
 var request = require("request");
 var twitter = require("twitter");
-var spotify = require("spotify");
+var spotify = require("node-spotify-api");
+
 var client = new Twitter({
   consumer_key: stuffINeed.twitterKeys.consumer_key,
   consumer_secret: stuffINeed.twitterKeys.consumer_secret,
@@ -13,6 +14,13 @@ var client = new Twitter({
   access_token_secret: stuffINeed.twitterKeys.access_token_secret,
 });
 
+var params = {screen_name: "mekajay04"};
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  if (!error) {
+    console.log(tweets);
+  }
+	
+search: function({ type: "Russ", query: 'My search query', limit: 20 }, callback);
 // Then run a request to the OMDB API with the movie specified
 request("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=40e9cece", function(error, response, body) {
 
@@ -25,3 +33,19 @@ request("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=40e9
     console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
   }
 });
+	
+	var spotify = new Spotify({
+  id: meka.jay,
+ secret: 31d39736a501418fae2181495b834058,
+});
+ 
+spotify.search ({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
+ 
+console.log(data); 
+});
+  
+});
+	
